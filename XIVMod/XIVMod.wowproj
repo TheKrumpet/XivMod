@@ -1,0 +1,75 @@
+<Project ToolsVersion="4.0" DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <Name>XIVMod</Name>
+    <ProjectGuid>01f9c5d2-947f-497a-97ed-effd688ea38f</ProjectGuid>
+    <AssemblyName>XIVMod</AssemblyName>
+    <RootNamespace>XIVMod</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="assets\BuffFrame.blp" />
+    <None Include="assets\BuffFrame.png" />
+    <Content Include="assets\BuffMask.blp" />
+    <None Include="assets\BuffMask.png" />
+    <Content Include="assets\DebuffFrame.blp" />
+    <None Include="assets\DebuffFrame.png" />
+    <Content Include="assets\DebuffMask.blp" />
+    <None Include="assets\DebuffMask.png" />
+    <Content Include="buffFrames.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="lib\time.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="XivAuraTemplate.lua">
+      <SubType>Code</SubType>
+      <DependentUpon>XivAuraTemplate.xml</DependentUpon>
+    </Content>
+    <Content Include="XivAuraTemplate.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="XivModConfig.lua">
+      <SubType>Code</SubType>
+      <DependentUpon>XivModConfig.xml</DependentUpon>
+    </Content>
+    <Content Include="XivModConfig.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="XivBuffFrame.lua">
+      <SubType>Code</SubType>
+      <DependentUpon>XivBuffFrame.xml</DependentUpon>
+    </Content>
+    <Content Include="XivBuffFrame.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="lib\interface.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="setup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="strings.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="XIVMod.toc">
+      <SubType>TableOfContents</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\" />
+    <Folder Include="lib" />
+  </ItemGroup>
+  <Import Project="$(DevEnvDir)\Extensions\Tools\MSBuild\AddonStudio\Wow\3.0\WowAddonStudio.targets" />
+  <!--
+  To modify your build process, add your task inside one of the targets below and uncomment it.
+  <Target Name="BeforeClean"></Target>
+  <Target Name="AfterClean"></Target>
+  <Target Name="BeforeRebuild"></Target>
+  <Target Name="AfterRebuild"></Target>
+  <Target Name="BeforeDeploy"></Target>
+  <Target Name="AfterDeploy"></Target>
+  -->
+</Project>

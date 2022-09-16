@@ -1,0 +1,42 @@
+<Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="XivModConfig.lua" />
+	<Frame name="XivModConfig" hidden="true" parent="UIParent" toplevel="true" movable="true">
+		<Size x="200" y="200" />
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString inherits="GameFontNormalHuge" text="Buffs">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="14" y="-14" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="BuffsEnable" inherits="ChatConfigCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="14" y="-40" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SetupCheckbox(self, Strings.Config.Enable_Xiv_Buffs, Strings.Config.Enable_Xiv_Buffs_Tooltip);
+					</OnLoad>
+					<OnClick function="BuffsEnable_Toggle" />
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="LockBuffFrames" inherits="ChatConfigCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="14" y="-60" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SetupCheckbox(self, Strings.Config.Lock_Buff_Frames, Strings.Config.Lock_Buff_Frames_Tooltip);
+					</OnLoad>
+					<OnClick function="BuffFramesLocked_Toggle" />
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnLoad function="XivModConfig_OnLoad" />
+		</Scripts>
+	</Frame>
+</Ui>

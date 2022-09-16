@@ -1,0 +1,13 @@
+## Title: XIVMod
+## Version: 0.0.1
+## Author: Krumpet
+## Interface: 30400
+
+lib\interface.lua
+lib\time.lua
+strings.lua
+buffFrames.lua
+XivModConfig.xml
+XivAuraTemplate.xml
+XivBuffFrame.xml
+setup.lua
