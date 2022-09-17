@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Script file="XivAuraTemplate.lua" />
-	<Button name="XivAuraTemplate" inherits="SecureActionButtonTemplate" virtual="true" movable="true">
+	<Button name="XivAuraTemplate" inherits="SecureActionButtonTemplate" virtual="true">
 		<Anchors>
 			<Anchor point="LEFT" />
 		</Anchors>

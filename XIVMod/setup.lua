@@ -1,5 +1,3 @@
-DEV_MODE = true;
-
 -- Config
 XivModConfig.name = "XIV Mod";
 InterfaceOptions_AddCategory(XivModConfig);
@@ -13,13 +11,11 @@ end
 SLASH_XIVMOD1 = "/xivmod";
 SLASH_XIVMOD2 = "/xiv";
 
-SlashCmdList.XIVMOD = function()
-	OpenOptions();
+SlashCmdList.XIVMOD = function(command)
+	if     (command == nil)      then OpenOptions();
+	elseif (command == "show")   then BuffFrames_Toggle(true);
+	elseif (command == "hide")   then BuffFrames_Toggle(true);
+	elseif (command == "lock")   then LockFrames_Toggle(true);
+	elseif (command == "unlock") then LockFrames_Toggle(false);
+	end
 end
-
--- Dev
-if (DEV_MODE) then
-	OpenOptions();
-end
-
-frames = nil;

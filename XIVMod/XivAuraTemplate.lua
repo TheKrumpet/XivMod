@@ -17,12 +17,12 @@ AURA_FRAME_BUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\BuffFrame]];
 AURA_FRAME_DEBUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\DebuffFrame]];
 
 DISPEL_TYPE_COLOURS = {
-	None = { r = 1.0, g = 0.0, b = 0.0 },
+	None = { r = 0.0, g = 0.0, b = 0.0 },
 	Curse = { r = 1.0, g = 0.0, b = 1.0 },
 	Disease = { r = 0.5, g = 0.5, b = 0.0 },
 	Magic = { r = 0.0, g = 0.0, b = 1.0 },
 	Poison = { r = 0.0, g = 1.0, b = 0.0 }
-}
+};
 
 -- Countdown
 COUNTDOWN_FONT = "ConsoleFontSmall";

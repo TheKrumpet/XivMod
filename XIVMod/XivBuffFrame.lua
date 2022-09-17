@@ -22,7 +22,7 @@ function XivBuffFrame_Create(unit, filter)
 	if (filter == "HARMFUL") then
 		auraFrame:SetPoint("BOTTOMRIGHT");
 		auraFrame:SetAttribute("point", "RIGHT");
-		auraFrame:SetAttribute("xOffset", "-21");
+		auraFrame:SetAttribute("xOffset", "-24");
 	end
 
 	auraFrame:HookScript("OnEvent", function()
