@@ -75,7 +75,7 @@ function XivAura_OnUpdate(aura)
 	end
 end
 
-function XivAura_OnAuraChanged(aura, icon, caster)
+function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 	aura.texture:SetTexture(icon);
 	aura.texture:SetMask(nil);
 	aura.texture:SetTexCoord(AURA_ICON_CROP.left, AURA_ICON_CROP.right, AURA_ICON_CROP.top, AURA_ICON_CROP.bottom);
@@ -106,7 +106,7 @@ function XivAura_Render(aura)
 	local name, icon, stacks, dispelType, _, expirationTime, caster, _, _, spellId = UnitAura(aura.unit, aura:GetID(), aura.filter);
 
 	if (aura.spellId ~= spellId) then
-		XivAura_OnAuraChanged(aura, icon, caster);
+		XivAura_OnAuraChanged(aura, icon, dispelType, caster);
 		aura.spellId = spellId;
 	end
 
