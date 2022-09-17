@@ -21,6 +21,9 @@
     <Content Include="buffFrames.lua">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="config.lua">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="lib\time.lua">
       <SubType>Code</SubType>
     </Content>
@@ -31,11 +34,11 @@
     <Content Include="XivAuraTemplate.xml">
       <SubType>Frame</SubType>
     </Content>
-    <Content Include="XivModConfig.lua">
+    <Content Include="XivModConfigScreen.lua">
       <SubType>Code</SubType>
-      <DependentUpon>XivModConfig.xml</DependentUpon>
+      <DependentUpon>XivModConfigScreen.xml</DependentUpon>
     </Content>
-    <Content Include="XivModConfig.xml">
+    <Content Include="XivModConfigScreen.xml">
       <SubType>Frame</SubType>
     </Content>
     <Content Include="XivBuffFrame.lua">

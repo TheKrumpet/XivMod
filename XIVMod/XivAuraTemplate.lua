@@ -36,7 +36,7 @@ STACKS_FONT = "NumberFontNormal";
 STACKS_OFFSET = { x = -1, y = 1 };
 
 function XivAura_OnLoad(aura)
-	aura:SetSize(AURA_SIZE.x, AURA_SIZE.y);
+	--aura:SetSize(AURA_SIZE.x, AURA_SIZE.y);
 
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
 	aura.texture:SetPoint("TOP");

@@ -1,10 +1,10 @@
 -- Config
-XivModConfig.name = "XIV Mod";
-InterfaceOptions_AddCategory(XivModConfig);
+XivModConfigScreen.name = "XIV Mod";
+InterfaceOptions_AddCategory(XivModConfigScreen);
 
 function OpenOptions()
-	InterfaceOptionsFrame_OpenToCategory(XivModConfig);
-	InterfaceOptionsFrame_OpenToCategory(XivModConfig);
+	InterfaceOptionsFrame_OpenToCategory(XivModConfigScreen);
+	InterfaceOptionsFrame_OpenToCategory(XivModConfigScreen);
 end
 
 -- Slash Commands

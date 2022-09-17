@@ -22,11 +22,11 @@ function XivBuffFrame_Create(unit, filter)
 
 	if (filter == "HELPFUL") then
 		auraFrame:SetPoint("BOTTOMLEFT");
-		auraFrame:SetAttribute("point", "LEFT");
+		auraFrame:SetAttribute("point", "BOTTOMLEFT");
 		auraFrame:SetAttribute("xOffset", "24");
 	elseif (filter == "HARMFUL") then
 		auraFrame:SetPoint("BOTTOMRIGHT");
-		auraFrame:SetAttribute("point", "RIGHT");
+		auraFrame:SetAttribute("point", "BOTTOMRIGHT");
 		auraFrame:SetAttribute("xOffset", "-24");
 	end
 

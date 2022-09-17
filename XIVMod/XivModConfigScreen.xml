@@ -1,6 +1,6 @@
 <Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="XivModConfig.lua" />
-	<Frame name="XivModConfig" hidden="true" parent="UIParent" toplevel="true" movable="true">
+	<Script file="XivModConfigScreen.lua" />
+	<Frame name="XivModConfigScreen" hidden="true" parent="UIParent" toplevel="true" movable="true">
 		<Size x="200" y="200" />
 		<Layers>
 			<Layer level="OVERLAY">
@@ -36,7 +36,7 @@
 			</CheckButton>
 		</Frames>
 		<Scripts>
-			<OnLoad function="XivModConfig_OnLoad" />
+			<OnLoad function="XivModConfigScreen_OnLoad" />
 		</Scripts>
 	</Frame>
 </Ui>

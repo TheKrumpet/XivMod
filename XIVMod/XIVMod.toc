@@ -2,12 +2,13 @@
 ## Version: 0.0.1
 ## Author: Krumpet
 ## Interface: 30400
+## SavedVariables: XivMod_Config
 
 lib\interface.lua
 lib\time.lua
 strings.lua
 buffFrames.lua
-XivModConfig.xml
+XivModConfigScreen.xml
 XivAuraTemplate.xml
 XivBuffFrame.xml
 setup.lua

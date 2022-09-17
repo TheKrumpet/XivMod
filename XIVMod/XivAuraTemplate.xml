@@ -1,14 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Script file="XivAuraTemplate.lua" />
 	<Button name="XivAuraTemplate" inherits="SecureActionButtonTemplate" virtual="true">
-		<Anchors>
-			<Anchor point="LEFT" />
-		</Anchors>
+		<Size x="26" y="38" />
 		<Attributes>
 			<Attribute name="type2" value="cancelaura" />
 		</Attributes>
 		<Scripts>
-			<OnLoad function="XivAura_OnLoad" />
+			<OnLoad function="XivAura_OnLoad" inherit="prepend" />
 			<OnUpdate function="XivAura_OnUpdate" />
 			<OnEnter function="XivAura_ShowTooltip" />
 			<OnLeave function="XivAura_HideTooltip" />
