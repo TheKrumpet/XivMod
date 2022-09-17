@@ -43,11 +43,13 @@ end
 
 function XivBuffFrame_Lock(frame)
 	frame:SetMovable(false);
+	frame:EnableMouse(false);
 	frame.dragFrame:Hide();
 end
 
 function XivBuffFrame_Unlock(frame)
 	frame:SetMovable(true);
+	frame:EnableMouse(true);
 	frame.dragFrame:Show();
 end
 
