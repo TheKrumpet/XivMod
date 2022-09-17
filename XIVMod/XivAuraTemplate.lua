@@ -4,7 +4,7 @@ ONE_MINUTE = 60;
 
 -- Aura
 AURA_SIZE = { x = 26, y = 38 };
-
+AURA_ICON_OFFSET = -6;
 -- Aura Icon
 AURA_ICON_SUBLAYER = -8;
 AURA_ICON_CROP = { left = 0, right = 1, top = 0.01, bottom = 0.99 };
@@ -16,11 +16,15 @@ AURA_FRAME_SUBLAYER = -7;
 AURA_FRAME_BUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\BuffFrame]];
 AURA_FRAME_DEBUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\DebuffFrame]];
 
+-- Cleanse
+AURA_CLEANSE_SUBLAYER = -7;
+AURA_CLEANSE_TEXTURE = [[Interface\Addons\XIVMod\assets\CleanseMarker]];
+
 DISPEL_TYPE_COLOURS = {
 	None = { r = 0.0, g = 0.0, b = 0.0 },
-	Curse = { r = 1.0, g = 0.0, b = 1.0 },
-	Disease = { r = 0.5, g = 0.5, b = 0.0 },
-	Magic = { r = 0.0, g = 0.0, b = 1.0 },
+	Curse = { r = 1.0, g = 0.3, b = 1.0 },
+	Disease = { r = 0.9, g = 0.4, b = 0.0 },
+	Magic = { r = 0.3, g = 0.7, b = 1.0 },
 	Poison = { r = 0.0, g = 1.0, b = 0.0 }
 };
 
@@ -33,20 +37,24 @@ COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
 
 -- Stacks
 STACKS_FONT = "NumberFontNormal";
-STACKS_OFFSET = { x = -1, y = 1 };
+STACKS_OFFSET = { x = -1, y = -5 };
 
 function XivAura_OnLoad(aura)
-	--aura:SetSize(AURA_SIZE.x, AURA_SIZE.y);
-
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
-	aura.texture:SetPoint("TOP");
+	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET);
 	aura.texture:SetSize(AURA_SIZE.x, AURA_SIZE.x);
 	aura.texture:Show();
 
 	aura.textureFrame = aura:CreateTexture(nil, "ARTWORK", nil, AURA_FRAME_SUBLAYER);
-	aura.textureFrame:SetPoint("TOP");
+	aura.textureFrame:SetPoint("TOP", 0, AURA_ICON_OFFSET);
 	aura.textureFrame:SetSize(AURA_SIZE.x, AURA_SIZE.x);
 	aura.textureFrame:Show();
+
+	aura.cleanse = aura:CreateTexture(nil, "ARTWORK", nil, AURA_CLEANSE_SUBLAYER);
+	aura.cleanse:SetTexture(AURA_CLEANSE_TEXTURE);
+	aura.cleanse:SetSize(AURA_SIZE.x, AURA_SIZE.x);
+	aura.cleanse:SetPoint("TOP");
+	aura.cleanse:Hide();
 		
 	aura.countdown = aura:CreateFontString(nil, "ARTWORK", COUNTDOWN_FONT);
 	aura.countdown:SetPoint("BOTTOM", COUNTDOWN_OFFSET.x, COUNTDOWN_OFFSET.y);
@@ -89,10 +97,17 @@ function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 
 		if (dispelType == nil) then
 			dispelType = "None";
+			aura.cleanse:Hide();
+		else
+			aura.cleanse:Show();
 		end
 		
 		local dispelTypeColour = DISPEL_TYPE_COLOURS[dispelType];
-		aura.textureFrame:SetVertexColor(dispelTypeColour.r, dispelTypeColour.g, dispelTypeColour.b);
+		aura.textureFrame:SetVertexColor(dispelTypeColour.r, dispelTypeColour.g, dispelTypeColour.b);		
+
+		if (aura.cleanse:IsShown()) then
+			aura.cleanse:SetVertexColor(dispelTypeColour.r, dispelTypeColour.g, dispelTypeColour.b);
+		end
 	end
 
 	if (caster == "player") then

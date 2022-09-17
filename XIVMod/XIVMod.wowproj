@@ -14,6 +14,8 @@
     <None Include="assets\BuffFrame.png" />
     <Content Include="assets\BuffMask.blp" />
     <None Include="assets\BuffMask.png" />
+    <Content Include="assets\CleanseMarker.blp" />
+    <None Include="assets\CleanseMarker.png" />
     <Content Include="assets\DebuffFrame.blp" />
     <None Include="assets\DebuffFrame.png" />
     <Content Include="assets\DebuffMask.blp" />

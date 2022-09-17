@@ -37,6 +37,7 @@
 		</Frames>
 		<Scripts>
 			<OnLoad function="XivModConfigScreen_OnLoad" />
+			<OnShow function="XivModConfigScreen_OnShow" />
 		</Scripts>
 	</Frame>
 </Ui>

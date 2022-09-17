@@ -2,9 +2,9 @@ local frames = { buffFrame = nil, debuffFrame = nil };
 
 function EnableFrame(frame, offset)
 	frame:Show();
-	XivBuffFrameAuras_RenderAuras(frame);
 	frame:ClearAllPoints();
 	frame:SetPoint(offset.point, offset.x, offset.y);
+	XivBuffFrameAuras_RenderAuras(frame);
 end
 
 function BuffFrames_Toggle(enabled)
@@ -24,10 +24,11 @@ function BuffFrames_Toggle(enabled)
 	else
 		BuffFrame:Show();
 		
-		for index, frame in ipairs(frames) do
-			frame:Hide();
-		end
+		frames.buffFrame:Hide();
+		frames.debuffFrame:Hide();
 	end
+
+	XivMod_Config.Buffs.Enabled = checked;
 end
 
 function GetFrameOffset(frame)
@@ -48,4 +49,6 @@ function LockFrames_Toggle(locked)
 		XivBuffFrame_Unlock(frames.debuffFrame);
 		XivMod_Config.Buffs.Locked = false;
 	end
+
+	XivMod_Config.Buffs.Locked = locked;
 end

@@ -1,13 +1,13 @@
 <Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="XivBuffFrame.lua" />
 	<Frame name="XivBuffFrame" virtual="true" parent="UIParent" movable="true" enableMouse="true" clipChildren="false">
-		<Size x="244" y="160" />
+		<Size x="244" y="200" />
 		<Anchors>
 			<Anchor point="CENTER" />
 		</Anchors>
 		<Frames>
 			<Frame frameLevel="2" hidden="false" name="XivBuffFrameDragOverlay">
-				<Size x="244" y="160" />
+				<Size x="244" y="200" />
 				<Anchors>
 					<Anchor point="CENTER" />
 				</Anchors>
@@ -29,7 +29,7 @@
 					<Attribute name="separateOwn" value="1" />
 					<Attribute name="wrapAfter" value="10" />
 					<Attribute name="wrapXOffset" value="0" />
-					<Attribute name="wrapYOffset" value="40" />
+					<Attribute name="wrapYOffset" value="45" />
 				</Attributes>
 			</Frame>
 		</Frames>

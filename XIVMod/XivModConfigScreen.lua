@@ -12,20 +12,20 @@ function BuffsEnable_Toggle()
 	
 	BuffFrames_Toggle(checked);
 
-	XivMod_Config.Buffs.Enabled = checked;
 end
 
 function BuffFramesLocked_Toggle()
 	local locked = LockBuffFrames:GetChecked();
 	
 	LockFrames_Toggle(locked);
-
-	XivMod_Config.Buffs.Locked = locked;
 end
 
+
 function XivModConfig_InitialiseFromConfig()
-	if (XivMod_Config.Buffs.Enabled) then
-		BuffFrames_Toggle(true);
+	BuffFrames_Toggle(true);
+
+	if (not XivMod_Config.Buffs.Enabled) then
+		BuffFrames_Toggle(false);
 	end
 
 	if (XivMod_Config.Buffs.Locked) then
@@ -33,13 +33,15 @@ function XivModConfig_InitialiseFromConfig()
 	end
 end
 
+function XivModConfigScreen_OnShow()
+	BuffsEnable:SetChecked(XivMod_Config.Buffs.Enabled);
+	LockBuffFrames:SetChecked(XivMod_Config.Buffs.Locked);
+end
+
 function XivModConfigScreen_OnLoad(screen)
 	screen:SetScript("OnEvent", function(self, event, eventArgs)
 		if (event == "ADDON_LOADED" and eventArgs == "XIVMod") then
 			XivModConfig_InitialiseFromConfig();
-
-			BuffsEnable:SetChecked(XivMod_Config.Buffs.Enabled);
-			LockBuffFrames:SetChecked(XivMod_Config.Buffs.Locked);
 		end
 	end);
 

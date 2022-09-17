@@ -14,7 +14,7 @@ SLASH_XIVMOD2 = "/xiv";
 SlashCmdList.XIVMOD = function(command)
 	if     (command == "")       then OpenOptions();
 	elseif (command == "show")   then BuffFrames_Toggle(true);
-	elseif (command == "hide")   then BuffFrames_Toggle(true);
+	elseif (command == "hide")   then BuffFrames_Toggle(false);
 	elseif (command == "lock")   then LockFrames_Toggle(true);
 	elseif (command == "unlock") then LockFrames_Toggle(false);
 	end
