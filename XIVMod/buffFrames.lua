@@ -28,7 +28,7 @@ function BuffFrames_Toggle(enabled)
 		frames.debuffFrame:Hide();
 	end
 
-	XivMod_Config.Buffs.Enabled = checked;
+	XivMod_Config.Buffs.Enabled = enabled;
 end
 
 function GetFrameOffset(frame)

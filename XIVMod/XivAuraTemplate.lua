@@ -21,7 +21,6 @@ AURA_CLEANSE_SUBLAYER = -7;
 AURA_CLEANSE_TEXTURE = [[Interface\Addons\XIVMod\assets\CleanseMarker]];
 
 DISPEL_TYPE_COLOURS = {
-	None = { r = 0.0, g = 0.0, b = 0.0 },
 	Curse = { r = 1.0, g = 0.3, b = 1.0 },
 	Disease = { r = 0.9, g = 0.4, b = 0.0 },
 	Magic = { r = 0.3, g = 0.7, b = 1.0 },
@@ -96,17 +95,11 @@ function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 		aura.textureFrame:SetTexture(AURA_FRAME_DEBUFF_TEXTURE);
 
 		if (dispelType == nil) then
-			dispelType = "None";
 			aura.cleanse:Hide();
 		else
-			aura.cleanse:Show();
-		end
-		
-		local dispelTypeColour = DISPEL_TYPE_COLOURS[dispelType];
-		aura.textureFrame:SetVertexColor(dispelTypeColour.r, dispelTypeColour.g, dispelTypeColour.b);		
-
-		if (aura.cleanse:IsShown()) then
+			local dispelTypeColour = DISPEL_TYPE_COLOURS[dispelType];
 			aura.cleanse:SetVertexColor(dispelTypeColour.r, dispelTypeColour.g, dispelTypeColour.b);
+			aura.cleanse:Show();
 		end
 	end
 
