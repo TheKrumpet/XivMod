@@ -36,7 +36,7 @@ COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
 
 -- Stacks
 STACKS_FONT = "NumberFontNormal";
-STACKS_OFFSET = { x = -1, y = -5 };
+STACKS_OFFSET = { x = -2.5, y = -5 };
 
 function XivAura_OnLoad(aura)
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
