@@ -6,38 +6,21 @@
 			<Layer level="OVERLAY">
 				<FontString inherits="GameFontNormalHuge" text="Buffs">
 					<Anchors>
-						<Anchor point="TOPLEFT" x="14" y="-14" />
+						<Anchor point="TOPLEFT" x="15" y="-15" />
 					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
-			<CheckButton name="BuffsEnable" inherits="ChatConfigCheckButtonTemplate">
+			<Frame inherits="XivBuffsConfig">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="14" y="-40" />
+					<Anchor point="TOP" y="-25" />
+					<Anchor point="LEFT" />
 				</Anchors>
-				<Scripts>
-					<OnLoad>
-						SetupCheckbox(self, Strings.Config.Enable_Xiv_Buffs, Strings.Config.Enable_Xiv_Buffs_Tooltip);
-					</OnLoad>
-					<OnClick function="BuffsEnable_Toggle" />
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="LockBuffFrames" inherits="ChatConfigCheckButtonTemplate">
-				<Anchors>
-					<Anchor point="TOPLEFT" x="14" y="-60" />
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						SetupCheckbox(self, Strings.Config.Lock_Buff_Frames, Strings.Config.Lock_Buff_Frames_Tooltip);
-					</OnLoad>
-					<OnClick function="BuffFramesLocked_Toggle" />
-				</Scripts>
-			</CheckButton>
+			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad function="XivModConfigScreen_OnLoad" />
-			<OnShow function="XivModConfigScreen_OnShow" />
 		</Scripts>
 	</Frame>
 </Ui>

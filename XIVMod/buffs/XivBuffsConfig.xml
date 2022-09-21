@@ -1,0 +1,31 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Script file="XivBuffsConfig.lua" />
+	<Frame name="XivBuffsConfig" toplevel="true" virtual="true">
+		<Size y="70" />
+		<Frames>
+			<CheckButton name="BuffsEnable" inherits="ChatConfigCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="15" y="-15" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SetupCheckbox(self, Strings.Config.Enable_Xiv_Buffs, Strings.Config.Enable_Xiv_Buffs_Tooltip, BuffsEnable_Toggle);
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="LockBuffFrames" inherits="ChatConfigCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="15" y="-35" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SetupCheckbox(self, Strings.Config.Lock_Buff_Frames, Strings.Config.Lock_Buff_Frames_Tooltip, BuffFramesLocked_Toggle);
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow function="XivBuffsConfig_OnShow" />
+		</Scripts>
+	</Frame>
+</Ui>

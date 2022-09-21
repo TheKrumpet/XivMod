@@ -21,12 +21,16 @@ function SetupButton(self, text)
 	self:SetText(text);
 end
 
-function SetupCheckbox(self, text, tooltip)
+function SetupCheckbox(self, text, tooltip, onClick)
 	local checkText = _G[self:GetName().."Text"];
 	checkText:SetText(text);
 
 	if (tooltip) then
 		SetupTooltip(self, text, tooltip);
+	end
+
+	if (onClick) then
+		self:HookScript("OnClick", onClick);
 	end
 end
 

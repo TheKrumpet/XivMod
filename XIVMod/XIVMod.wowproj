@@ -23,6 +23,12 @@
     <Content Include="buffs\buffs.lua">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="buffs\XivBuffsConfig.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="buffs\XivBuffsConfig.xml">
+      <SubType>Frame</SubType>
+    </Content>
     <Content Include="buffs\XivAuraTemplate.lua">
       <SubType>Code</SubType>
     </Content>
@@ -40,7 +46,6 @@
     </Content>
     <Content Include="XivModConfigScreen.lua">
       <SubType>Code</SubType>
-      <DependentUpon>XivModConfigScreen.xml</DependentUpon>
     </Content>
     <Content Include="XivModConfigScreen.xml">
       <SubType>Frame</SubType>
