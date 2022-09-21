@@ -1,5 +1,8 @@
+local ONE_HOUR = 3600;
+local ONE_MINUTE = 60;
+
 function GetCountdown(secsRemaining)
-	if (secsRemaining >= ONE_HOUR) then -- over an hour
+	if (secsRemaining >= ONE_HOUR) then
 		local hoursRemaining = math.floor(secsRemaining / ONE_HOUR);
 		return hoursRemaining .. "h";
 	elseif (secsRemaining >= ONE_MINUTE) then

@@ -29,3 +29,15 @@ function SetupCheckbox(self, text, tooltip)
 		SetupTooltip(self, text, tooltip);
 	end
 end
+
+function Frame_OnDragStart(frame)
+	if (not frame:IsMovable()) then
+		return;
+	end
+	
+	frame:StartMoving();
+end
+
+function Frame_OnDragStop()
+	frame:StopMovingOrSizing();
+end

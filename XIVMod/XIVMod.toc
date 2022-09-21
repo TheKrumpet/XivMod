@@ -7,8 +7,8 @@
 lib\interface.lua
 lib\time.lua
 strings.lua
-buffFrames.lua
+buffs\buffs.lua
+buffs\XivAuraTemplate.xml
+buffs\XivBuffFrame.xml
 XivModConfigScreen.xml
-XivAuraTemplate.xml
-XivBuffFrame.xml
 setup.lua

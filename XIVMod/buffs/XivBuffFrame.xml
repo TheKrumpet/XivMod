@@ -35,8 +35,8 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>self:RegisterForDrag("LeftButton");</OnLoad>
-			<OnDragStart function="XivBuffFrame_OnDragStart" />
-			<OnDragStop function="XivBuffFrame_OnDragStop" />
+			<OnDragStart function="Frame_OnDragStart" />
+			<OnDragStop function="Frame_OnDragStop" />
 		</Scripts>
 	</Frame>
 </Ui>

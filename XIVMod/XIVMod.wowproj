@@ -10,44 +10,39 @@
     <OutputPath>.</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="assets\BuffFrame.blp" />
-    <None Include="assets\BuffFrame.png" />
-    <Content Include="assets\BuffMask.blp" />
-    <None Include="assets\BuffMask.png" />
-    <Content Include="assets\CleanseMarker.blp" />
-    <None Include="assets\CleanseMarker.png" />
-    <Content Include="assets\DebuffFrame.blp" />
-    <None Include="assets\DebuffFrame.png" />
-    <Content Include="assets\DebuffMask.blp" />
-    <None Include="assets\DebuffMask.png" />
-    <Content Include="buffFrames.lua">
+    <Content Include="buffs\assets\BuffFrame.blp" />
+    <None Include="buffs\assets\BuffFrame.png" />
+    <Content Include="buffs\assets\BuffMask.blp" />
+    <None Include="buffs\assets\BuffMask.png" />
+    <Content Include="buffs\assets\CleanseMarker.blp" />
+    <None Include="buffs\assets\CleanseMarker.png" />
+    <Content Include="buffs\assets\DebuffFrame.blp" />
+    <None Include="buffs\assets\DebuffFrame.png" />
+    <Content Include="buffs\assets\DebuffMask.blp" />
+    <None Include="buffs\assets\DebuffMask.png" />
+    <Content Include="buffs\buffs.lua">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="config.lua">
+    <Content Include="buffs\XivAuraTemplate.lua">
       <SubType>Code</SubType>
+    </Content>
+    <Content Include="buffs\XivAuraTemplate.xml">
+      <SubType>Frame</SubType>
+    </Content>
+    <Content Include="buffs\XivBuffFrame.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="buffs\XivBuffFrame.xml">
+      <SubType>Frame</SubType>
     </Content>
     <Content Include="lib\time.lua">
       <SubType>Code</SubType>
-    </Content>
-    <Content Include="XivAuraTemplate.lua">
-      <SubType>Code</SubType>
-      <DependentUpon>XivAuraTemplate.xml</DependentUpon>
-    </Content>
-    <Content Include="XivAuraTemplate.xml">
-      <SubType>Frame</SubType>
     </Content>
     <Content Include="XivModConfigScreen.lua">
       <SubType>Code</SubType>
       <DependentUpon>XivModConfigScreen.xml</DependentUpon>
     </Content>
     <Content Include="XivModConfigScreen.xml">
-      <SubType>Frame</SubType>
-    </Content>
-    <Content Include="XivBuffFrame.lua">
-      <SubType>Code</SubType>
-      <DependentUpon>XivBuffFrame.xml</DependentUpon>
-    </Content>
-    <Content Include="XivBuffFrame.xml">
       <SubType>Frame</SubType>
     </Content>
     <Content Include="lib\interface.lua">
@@ -64,8 +59,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\" />
+    <Folder Include="buffs\assets\" />
     <Folder Include="lib" />
+    <Folder Include="buffs" />
   </ItemGroup>
   <Import Project="$(DevEnvDir)\Extensions\Tools\MSBuild\AddonStudio\Wow\3.0\WowAddonStudio.targets" />
   <!--

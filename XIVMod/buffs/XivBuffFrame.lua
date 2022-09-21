@@ -1,4 +1,4 @@
-function XivBuffFrameAuras_RenderAuras(auraFrame)
+local function XivBuffFrame_OnAurasChanged(auraFrame)
 	if (not auraFrame:IsShown()) then return end;
 
 	for aura_index = 1,40 do
@@ -6,8 +6,32 @@ function XivBuffFrameAuras_RenderAuras(auraFrame)
 
 		if (not aura or not aura:IsShown()) then return end;
 
-		XivAura_Render(aura);
+		aura:OnAurasChanged(aura);
 	end
+end
+
+local function XivBuffFrame_Enable(frame, point)
+	frame:Show();
+	frame:ClearAllPoints();
+	frame:SetPoint(point.point, point.x, point.y);
+end
+
+local function XivBuffFrame_GetFrameOffset(frame)
+	local point, _, _, xOffset, yOffset = frame:GetPoint();
+
+	return { point = point, x = xOffset, y = yOffset };
+end
+
+local function XivBuffFrame_Lock(frame)
+	frame:SetMovable(false);
+	frame:EnableMouse(false);
+	frame.dragFrame:Hide();
+end
+
+local function XivBuffFrame_Unlock(frame)
+	frame:SetMovable(true);
+	frame:EnableMouse(true);
+	frame.dragFrame:Show();
 end
 
 function XivBuffFrame_Create(unit, filter)
@@ -15,6 +39,11 @@ function XivBuffFrame_Create(unit, filter)
 	local dragFrame, auraFrame = newBuffFrame:GetChildren();
 	newBuffFrame.dragFrame = dragFrame;
 	newBuffFrame.auraFrame = auraFrame;
+
+	newBuffFrame.Enable = XivBuffFrame_Enable;
+	newBuffFrame.Lock = XivBuffFrame_Lock;
+	newBuffFrame.Unlock = XivBuffFrame_Unlock;
+	newBuffFrame.GetFrameOffset = XivBuffFrame_GetFrameOffset;
 
 	auraFrame:SetAttribute("unit", unit);
 	auraFrame:SetAttribute("filter", filter);
@@ -30,37 +59,11 @@ function XivBuffFrame_Create(unit, filter)
 		auraFrame:SetAttribute("xOffset", "-24");
 	end
 
-	auraFrame:HookScript("OnEvent", function()
-		XivBuffFrameAuras_RenderAuras(auraFrame);
-	end);
+	auraFrame:HookScript("OnEvent", XivBuffFrame_OnAurasChanged);
 
 	auraFrame:Show();
 	newBuffFrame:Show();
-	XivBuffFrameAuras_RenderAuras(auraFrame);
+	XivBuffFrame_OnAurasChanged(auraFrame);
 
 	return newBuffFrame;
-end
-
-function XivBuffFrame_Lock(frame)
-	frame:SetMovable(false);
-	frame:EnableMouse(false);
-	frame.dragFrame:Hide();
-end
-
-function XivBuffFrame_Unlock(frame)
-	frame:SetMovable(true);
-	frame:EnableMouse(true);
-	frame.dragFrame:Show();
-end
-
-function XivBuffFrame_OnDragStart(frame)
-	if (not frame:IsMovable()) then
-		return;
-	end
-	
-	frame:StartMoving();
-end
-
-function XivBuffFrame_OnDragStop(frame)
-	frame:StopMovingOrSizing();
 end

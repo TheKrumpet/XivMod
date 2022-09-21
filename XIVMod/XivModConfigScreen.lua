@@ -10,7 +10,7 @@ XivMod_Config = {
 function BuffsEnable_Toggle()
 	local checked = BuffsEnable:GetChecked();
 	
-	BuffFrames_Toggle(checked);
+	Buffs.Toggle(checked);
 
 end
 
@@ -22,14 +22,14 @@ end
 
 
 function XivModConfig_InitialiseFromConfig()
-	BuffFrames_Toggle(true);
+	Buffs.Toggle(true);
 
 	if (not XivMod_Config.Buffs.Enabled) then
-		BuffFrames_Toggle(false);
+		Buffs.Toggle(false);
 	end
 
 	if (XivMod_Config.Buffs.Locked) then
-		LockFrames_Toggle(true);
+		Buffs.Lock(true);
 	end
 end
 
