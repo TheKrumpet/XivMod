@@ -59,7 +59,7 @@ local function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 		aura.texture:SetMask(AURA_ICON_DEBUFF_MASK);
 		aura.textureFrame:SetTexture(AURA_FRAME_DEBUFF_TEXTURE);
 
-		if (dispelType == nil) then
+		if (dispelType == nil or dispelType == "") then
 			aura.cleanse:Hide();
 		else
 			local dispelTypeColour = DISPEL_TYPE_COLOURS[dispelType];

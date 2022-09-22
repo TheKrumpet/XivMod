@@ -42,6 +42,6 @@ function Frame_OnDragStart(frame)
 	frame:StartMoving();
 end
 
-function Frame_OnDragStop()
+function Frame_OnDragStop(frame)
 	frame:StopMovingOrSizing();
 end
