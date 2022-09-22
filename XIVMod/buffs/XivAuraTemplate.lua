@@ -26,7 +26,7 @@ local DISPEL_TYPE_COLOURS = {
 
 -- Countdown
 local COUNTDOWN_FONT = "ConsoleFontSmall";
-local COUNTDOWN_OFFSET = { x = 0.1, y = 0 };
+local COUNTDOWN_OFFSET = { x = 1.05, y = 0 };
 local COUNTDOWN_SCALE = 1.0;
 local COUNTDOWN_COLOUR_PLAYER = { r = 0.7, g = 1.0, b = 0.7 };
 local COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
@@ -130,6 +130,7 @@ function XivAura_OnLoad(aura)
 	aura.countdown = aura:CreateFontString(nil, "ARTWORK", COUNTDOWN_FONT);
 	aura.countdown:SetPoint("BOTTOM", COUNTDOWN_OFFSET.x, COUNTDOWN_OFFSET.y);
 	aura.countdown:SetScale(COUNTDOWN_SCALE);
+	aura.countdown:SetJustifyH("CENTER");
 
 	aura.stack = aura:CreateFontString(nil, "ARTWORK", STACKS_FONT);
 	aura.stack:SetJustifyH("RIGHT");
