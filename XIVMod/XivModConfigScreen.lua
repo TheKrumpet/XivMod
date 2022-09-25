@@ -3,7 +3,9 @@ XivMod_Config = {
 		Enabled = false,
 		Locked = false,
 		BuffFrameOffset = { point = "CENTER", x = 0, y = 0 },
-		DebuffFrameOffset = { point = "CENTER", x = 0, y = 0 }
+		DebuffFrameOffset = { point = "CENTER", x = 0, y = 0 },
+		TargetBuffFrameOffset  = { point = "CENTER", x = 0, y = 0 },
+		TargetDebuffFrameOffset  = { point = "CENTER", x = 0, y = 0 },
 	}
 };
 

@@ -13,7 +13,12 @@ end
 local function XivBuffFrame_Enable(frame, point)
 	frame:Show();
 	frame:ClearAllPoints();
-	frame:SetPoint(point.point, point.x, point.y);
+
+	if (point) then
+		frame:SetPoint(point.point or "CENTER", point.x or 0, point.y or 0);
+	else
+		frame:SetPoint("CENTER", 0, 0);
+	end
 end
 
 local function XivBuffFrame_GetFrameOffset(frame)
@@ -46,17 +51,30 @@ function XivBuffFrame_Create(unit, filter)
 	newBuffFrame.GetFrameOffset = XivBuffFrame_GetFrameOffset;
 
 	auraFrame:SetAttribute("unit", unit);
-	auraFrame:SetAttribute("filter", filter);
+
+	if (filter) then
+		auraFrame:SetAttribute("filter", filter);
+	end
+
 	auraFrame:ClearAllPoints();
+	local auraFramePoint = "";
+
+	if (unit == "player") then
+		auraFrame:SetAttribute("wrapYOffset", "45");
+		auraFramePoint = "BOTTOM";
+	elseif (unit == "target") then
+		auraFrame:SetAttribute("wrapYOffset", "-45");
+		auraFramePoint = "BOTTOM";
+	end
 
 	if (filter == "HELPFUL") then
-		auraFrame:SetPoint("BOTTOMLEFT");
-		auraFrame:SetAttribute("point", "BOTTOMLEFT");
 		auraFrame:SetAttribute("xOffset", "24");
+		auraFramePoint = auraFramePoint.."LEFT";
+		auraFrame:SetAttribute("point", auraFramePoint);
 	elseif (filter == "HARMFUL") then
-		auraFrame:SetPoint("BOTTOMRIGHT");
-		auraFrame:SetAttribute("point", "BOTTOMRIGHT");
 		auraFrame:SetAttribute("xOffset", "-24");
+		auraFramePoint = auraFramePoint.."RIGHT";
+		auraFrame:SetAttribute("point", auraFramePoint);
 	end
 
 	auraFrame:HookScript("OnEvent", XivBuffFrame_OnAurasChanged);
