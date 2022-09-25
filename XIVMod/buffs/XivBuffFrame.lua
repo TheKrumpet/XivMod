@@ -51,12 +51,7 @@ function XivBuffFrame_Create(unit, filter)
 	newBuffFrame.GetFrameOffset = XivBuffFrame_GetFrameOffset;
 
 	auraFrame:SetAttribute("unit", unit);
-
-	if (filter) then
-		auraFrame:SetAttribute("filter", filter);
-	end
-
-	auraFrame:ClearAllPoints();
+	auraFrame:SetAttribute("filter", filter);
 	local auraFramePoint = "";
 
 	if (unit == "player") then
@@ -64,18 +59,21 @@ function XivBuffFrame_Create(unit, filter)
 		auraFramePoint = "BOTTOM";
 	elseif (unit == "target") then
 		auraFrame:SetAttribute("wrapYOffset", "-45");
-		auraFramePoint = "BOTTOM";
+		auraFramePoint = "TOP";
+		auraFrame:RegisterEvent("PLAYER_TARGET_CHANGED");
 	end
 
 	if (filter == "HELPFUL") then
 		auraFrame:SetAttribute("xOffset", "24");
 		auraFramePoint = auraFramePoint.."LEFT";
-		auraFrame:SetAttribute("point", auraFramePoint);
 	elseif (filter == "HARMFUL") then
 		auraFrame:SetAttribute("xOffset", "-24");
 		auraFramePoint = auraFramePoint.."RIGHT";
-		auraFrame:SetAttribute("point", auraFramePoint);
 	end
+
+	auraFrame:ClearAllPoints();
+	auraFrame:SetAttribute("point", auraFramePoint);
+	auraFrame:SetPoint(auraFramePoint);
 
 	auraFrame:HookScript("OnEvent", XivBuffFrame_OnAurasChanged);
 
