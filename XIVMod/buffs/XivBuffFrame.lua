@@ -1,4 +1,78 @@
-local function XivBuffFrame_OnAurasChanged(auraFrame)
+local AURA_UPDATE_EVENTS = { };
+local AURA_FRAME_OPTS = {}
+
+AURA_FRAME_OPTS[BUFF_FRAME_TYPE.PlayerBuff] = {
+	name = "Player Buffs",
+	point = "BOTTOMLEFT",
+	events = {},
+	attrs = {
+		wrapYOffset = AURA_OFFSETS.y,
+		xOffset = AURA_OFFSETS.x,
+		unit = "player",
+		filter = "HELPFUL",
+		template = "XivSecureAuraTemplate"
+	}
+}
+
+AURA_FRAME_OPTS[BUFF_FRAME_TYPE.PlayerDebuff] = {
+	name = "Player Debuffs",
+	point = "BOTTOMRIGHT",
+	events = {}, 
+	attrs = {
+		wrapYOffset = AURA_OFFSETS.y,
+		xOffset = -AURA_OFFSETS.x,
+		unit = "player",
+		filter = "HARMFUL",
+		template = "XivAuraTemplate"
+	}
+}
+
+AURA_FRAME_OPTS[BUFF_FRAME_TYPE.TargetAll] = {
+	name = "Target",
+	point = "TOPLEFT",
+	events = { "PLAYER_TARGET_CHANGED" },
+	attrs = {
+		wrapYOffset = -AURA_OFFSETS.y,
+		xOffset = AURA_OFFSETS.x,
+		unit = "target",
+		filter = "INCLUDE_NAME_PLATE_ONLY",
+		template = "XivAuraTemplate"
+	}
+}
+
+AURA_FRAME_OPTS[BUFF_FRAME_TYPE.TargetBuff] = {
+	name = "Target Buffs",
+	point = "TOPLEFT",
+	events = { "PLAYER_TARGET_CHANGED" },
+	attrs = {
+		wrapYOffset = -AURA_OFFSETS.y,
+		xOffset = AURA_OFFSETS.x,
+		unit = "target",
+		filter = "HELPFUL",
+		template = "XivAuraTemplate"
+	}
+}
+
+AURA_FRAME_OPTS[BUFF_FRAME_TYPE.TargetDebuff] = {
+	name = "Target Debuffs",
+	point = "TOPRIGHT",
+	events = { "PLAYER_TARGET_CHANGED" },
+	attrs = {
+		wrapYOffset = -AURA_OFFSETS.y,
+		xOffset = -AURA_OFFSETS.x,
+		unit = "target",
+		filter = "HARMFUL",
+		template = "XivAuraTemplate"
+	}
+}
+
+local function XivBuffFrame_OnAurasChanged(auraFrame, event, args)
+	if (event ~= "UNIT_AURA") then
+		if (not InCombatLockdown()) then
+			SecureAuraHeader_Update(auraFrame);
+		end
+	end
+
 	if (not auraFrame:IsShown()) then return end;
 
 	for aura_index = 1,40 do
@@ -39,8 +113,10 @@ local function XivBuffFrame_Unlock(frame)
 	frame.dragFrame:Show();
 end
 
-function XivBuffFrame_Create(unit, filter)
-	local newBuffFrame = CreateFrame("Frame", "XivBuffFrame", UIParent, "XivBuffFrame");
+function XivBuffFrame_Create(frameType)
+	local opts = AURA_FRAME_OPTS[frameType];
+
+	local newBuffFrame = CreateFrame("Frame", nil, UIParent, "XivBuffFrame");
 	local dragFrame, auraFrame = newBuffFrame:GetChildren();
 	newBuffFrame.dragFrame = dragFrame;
 	newBuffFrame.auraFrame = auraFrame;
@@ -50,30 +126,21 @@ function XivBuffFrame_Create(unit, filter)
 	newBuffFrame.Unlock = XivBuffFrame_Unlock;
 	newBuffFrame.GetFrameOffset = XivBuffFrame_GetFrameOffset;
 
-	auraFrame:SetAttribute("unit", unit);
-	auraFrame:SetAttribute("filter", filter);
-	local auraFramePoint = "";
-
-	if (unit == "player") then
-		auraFrame:SetAttribute("wrapYOffset", "45");
-		auraFramePoint = "BOTTOM";
-	elseif (unit == "target") then
-		auraFrame:SetAttribute("wrapYOffset", "-45");
-		auraFramePoint = "TOP";
-		auraFrame:RegisterEvent("PLAYER_TARGET_CHANGED");
-	end
-
-	if (filter == "HELPFUL") then
-		auraFrame:SetAttribute("xOffset", "24");
-		auraFramePoint = auraFramePoint.."LEFT";
-	elseif (filter == "HARMFUL") then
-		auraFrame:SetAttribute("xOffset", "-24");
-		auraFramePoint = auraFramePoint.."RIGHT";
-	end
+	Array_ForEachKeyValue(opts.attrs, function (name, value)
+		auraFrame:SetAttribute(name, value);
+	end);
 
 	auraFrame:ClearAllPoints();
-	auraFrame:SetAttribute("point", auraFramePoint);
-	auraFrame:SetPoint(auraFramePoint);
+	auraFrame:SetPoint(opts.point);
+	auraFrame:SetAttribute("point", opts.point);
+
+	Array_ForEach(AURA_UPDATE_EVENTS, function (eventType)
+		auraFrame:RegisterEvent(eventType);
+	end);
+
+	Array_ForEach(opts.events, function (eventType)
+		auraFrame:RegisterEvent(eventType);
+	end);
 
 	auraFrame:HookScript("OnEvent", XivBuffFrame_OnAurasChanged);
 

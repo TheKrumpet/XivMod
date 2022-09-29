@@ -6,7 +6,9 @@
 
 lib\interface.lua
 lib\time.lua
+lib\array.lua
 strings.lua
+buffs\buffConstants.lua
 buffs\XivAuraTemplate.xml
 buffs\XivBuffFrame.xml
 buffs\XivBuffsConfig.xml

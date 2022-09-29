@@ -1,10 +1,16 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Script file="XivAuraTemplate.lua" />
-	<Button name="XivAuraTemplate" inherits="SecureActionButtonTemplate" virtual="true">
+	<Button name="XivSecureAuraTemplate" inherits="SecureActionButtonTemplate" virtual="true">
 		<Size x="28" y="44" />
 		<Attributes>
 			<Attribute name="type2" value="cancelaura" />
 		</Attributes>
+		<Scripts>
+			<OnLoad function="XivAura_OnLoad" inherit="prepend" />
+		</Scripts>
+	</Button>
+	<Button name="XivAuraTemplate" virtual="true">
+		<Size x="28" y="44" />
 		<Scripts>
 			<OnLoad function="XivAura_OnLoad" inherit="prepend" />
 		</Scripts>

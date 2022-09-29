@@ -1,5 +1,4 @@
 -- Aura
-local AURA_SIZE = { x = 26, y = 44 };
 local AURA_ICON_OFFSET = -6;
 
 -- Aura Icon
