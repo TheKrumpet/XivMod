@@ -1,5 +1,5 @@
 function ShowTooltip(owner, title, text)
-	GameTooltip:SetOwner(owner, "ANCHOR_BOTTOMRIGHT");
+	GameTooltip:SetOwner(owner, "ANCHOR_RIGHT");
 	GameTooltip_SetTitle(GameTooltip, title);
 	GameTooltip:SetText(text);
 	GameTooltip:Show();

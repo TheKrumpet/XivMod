@@ -20,6 +20,9 @@
     <None Include="buffs\assets\DebuffFrame.png" />
     <Content Include="buffs\assets\DebuffMask.blp" />
     <None Include="buffs\assets\DebuffMask.png" />
+    <Content Include="buffs\buffConstants.lua">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="buffs\buffs.lua">
       <SubType>Code</SubType>
     </Content>
@@ -40,6 +43,9 @@
     </Content>
     <Content Include="buffs\XivBuffFrame.xml">
       <SubType>Frame</SubType>
+    </Content>
+    <Content Include="lib\array.lua">
+      <SubType>Code</SubType>
     </Content>
     <Content Include="lib\time.lua">
       <SubType>Code</SubType>

@@ -19,9 +19,8 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<Frame frameLevel="1" hidden="true" inherits="SecureAuraHeaderTemplate" name="XivBuffFrameAuras" clipChildren="false">
+			<Frame frameLevel="1" hidden="true" inherits="SecureAuraHeaderTemplate" name="XivBuffFrameAuras" clipChildren="false">			
 				<Attributes>
-					<Attribute name="template" value="XivAuraTemplate" />
 					<Attribute name="minWidth" value="1" />
 					<Attribute name="minHeight" value="1" />
 					<Attribute name="sortMethod" value="TIME" />
@@ -29,7 +28,6 @@
 					<Attribute name="separateOwn" value="1" />
 					<Attribute name="wrapAfter" value="10" />
 					<Attribute name="wrapXOffset" value="0" />
-					<Attribute name="wrapYOffset" value="45" />
 				</Attributes>
 			</Frame>
 		</Frames>
