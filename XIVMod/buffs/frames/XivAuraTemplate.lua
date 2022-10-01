@@ -3,18 +3,18 @@ local AURA_ICON_OFFSET = -6;
 
 -- Aura Icon
 local AURA_ICON_SUBLAYER = -8;
-local AURA_ICON_CROP = { left = 0, right = 1, top = 0.01, bottom = 0.99 };
-local AURA_ICON_BUFF_MASK = [[Interface\AddOns\XIVMod\assets\BuffMask]];
-local AURA_ICON_DEBUFF_MASK = [[Interface\AddOns\XIVMod\assets\DebuffMask]];
+local AURA_ICON_CROP = { left = 1, right = 1, top = 1, bottom = 1 };
+local AURA_ICON_BUFF_MASK = [[Interface\AddOns\XIVMod\buffs\assets\BuffMask]];
+local AURA_ICON_DEBUFF_MASK = [[Interface\AddOns\XIVMod\buffs\assets\DebuffMask]];
 
 -- Aura Frame
 local AURA_FRAME_SUBLAYER = -7;
-local AURA_FRAME_BUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\BuffFrame]];
-local AURA_FRAME_DEBUFF_TEXTURE = [[Interface\AddOns\XIVMod\assets\DebuffFrame]];
+local AURA_FRAME_BUFF_TEXTURE = [[Interface\AddOns\XIVMod\buffs\assets\BuffFrame]];
+local AURA_FRAME_DEBUFF_TEXTURE = [[Interface\AddOns\XIVMod\buffs\assets\DebuffFrame]];
 
 -- Cleanse
 local AURA_CLEANSE_SUBLAYER = -7;
-local AURA_CLEANSE_TEXTURE = [[Interface\AddOns\XIVMod\assets\CleanseMarker]];
+local AURA_CLEANSE_TEXTURE = [[Interface\AddOns\XIVMod\buffs\assets\CleanseMarker]];
 
 local DISPEL_TYPE_COLOURS = {
 	Curse = { r = 1.0, g = 0.3, b = 1.0 },
@@ -25,7 +25,7 @@ local DISPEL_TYPE_COLOURS = {
 
 -- Countdown
 local COUNTDOWN_FONT = "ConsoleFontSmall";
-local COUNTDOWN_OFFSET = { x = 1.05, y = 0 };
+local COUNTDOWN_OFFSET = { x = 1.0, y = 0 };
 local COUNTDOWN_SCALE = 1.0;
 local COUNTDOWN_COLOUR_PLAYER = { r = 0.7, g = 1.0, b = 0.7 };
 local COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
@@ -48,8 +48,6 @@ end
 
 local function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 	aura.texture:SetTexture(icon);
-	aura.texture:SetMask(nil);
-	aura.texture:SetTexCoord(AURA_ICON_CROP.left, AURA_ICON_CROP.right, AURA_ICON_CROP.top, AURA_ICON_CROP.bottom);
 
 	if (aura.filter == "HELPFUL") then
 		aura.texture:SetMask(AURA_ICON_BUFF_MASK);
@@ -111,7 +109,7 @@ end
 
 function XivAura_OnLoad(aura)
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
-	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET);
+	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET - AURA_ICON_CROP.top);
 	aura.texture:SetSize(AURA_SIZE.x, AURA_SIZE.x);
 	aura.texture:Show();
 
@@ -136,7 +134,9 @@ function XivAura_OnLoad(aura)
 	aura.stack:SetJustifyV("TOP");
 	aura.stack:SetPoint("TOPRIGHT", STACKS_OFFSET.x, STACKS_OFFSET.y);
 
-	aura:RegisterForClicks("RightButtonUp");
+	if (aura.RegisterForClicks) then
+		aura:RegisterForClicks("RightButtonUp");
+	end
 
 	aura.unit = aura:GetParent():GetAttribute("unit");
 	aura.filter = aura:GetParent():GetAttribute("filter");

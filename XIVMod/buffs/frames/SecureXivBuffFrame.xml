@@ -1,12 +1,12 @@
 <Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="XivBuffFrame.lua" />
-	<Frame name="XivBuffFrame" virtual="true" parent="UIParent" movable="true" enableMouse="true" clipChildren="false">
+	<Script file="SecureXivBuffFrame.lua" />
+	<Frame name="SecureXivBuffFrame" virtual="true" parent="UIParent" movable="true" enableMouse="true" clipChildren="false">
 		<Size x="244" y="200" />
 		<Anchors>
 			<Anchor point="CENTER" />
 		</Anchors>
 		<Frames>
-			<Frame frameLevel="2" hidden="false" name="XivBuffFrameDragOverlay">
+			<Frame frameLevel="2" hidden="false" name="SecureXivBuffFrameDragOverlay">
 				<Size x="244" y="200" />
 				<Anchors>
 					<Anchor point="CENTER" />
@@ -19,8 +19,9 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<Frame frameLevel="1" hidden="true" inherits="SecureAuraHeaderTemplate" name="XivBuffFrameAuras" clipChildren="false">			
+			<Frame frameLevel="1" hidden="true" inherits="SecureAuraHeaderTemplate" name="SecureXivBuffFrameAuras" clipChildren="false">			
 				<Attributes>
+					<Attribute name="template" value="SecureXivAuraTemplate" />
 					<Attribute name="minWidth" value="1" />
 					<Attribute name="minHeight" value="1" />
 					<Attribute name="sortMethod" value="TIME" />

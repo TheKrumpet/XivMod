@@ -1,0 +1,33 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Script file="XivBuffFrame.lua" />
+	<Frame name="XivBuffFrame" virtual="true" clipChildren="false">
+		<Size x="244" y="200" />
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Frames>
+			<Frame frameLevel="2" hidden="false" name="XivBuffFrameDragOverlay">
+				<Size x="244" y="200" />
+				<Anchors>
+					<Anchor point="CENTER" />
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture>
+							<Color r="0" g="1.0" b="0" a="0.5" />
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame frameLevel="1" hidden="false" name="XivBuffFrameAuras" clipChildren="false">			
+				<Size x="244" y="200" />
+				<Frames></Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>self:RegisterForDrag("LeftButton");</OnLoad>
+			<OnDragStart function="Frame_OnDragStart" />
+			<OnDragStop function="Frame_OnDragStop" />
+		</Scripts>
+	</Frame>
+</Ui>

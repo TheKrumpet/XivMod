@@ -4,14 +4,8 @@
 ## Interface: 30400
 ## SavedVariables: XivMod_Config
 
-lib\interface.lua
-lib\time.lua
-lib\array.lua
+lib\_lib.xml
 strings.lua
-buffs\buffConstants.lua
-buffs\XivAuraTemplate.xml
-buffs\XivBuffFrame.xml
-buffs\XivBuffsConfig.xml
-buffs\buffs.lua
+buffs\_buffs.xml
 XivModConfigScreen.xml
 setup.lua

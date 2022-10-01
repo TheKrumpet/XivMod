@@ -1,11 +1,16 @@
-local enabledFrames = { BUFF_FRAME_TYPE.PlayerBuff, BUFF_FRAME_TYPE.PlayerDebuff };
+local enabledFrames = { 
+	BUFF_FRAME_TYPE.PlayerBuff, 
+	BUFF_FRAME_TYPE.PlayerDebuff,
+	BUFF_FRAME_TYPE.TargetBuff,
+	BUFF_FRAME_TYPE.TargetDebuff
+};
 local frames = {};
 
 local function Buffs_Toggle(enabled)
 	if (enabled) then
 		BuffFrame:Hide();
 
-		Array_ForEachKeyValue(frames, function (name, frame)
+		Table_ForEach(frames, function (name, frame)
 			frame:Enable(XivMod_Config.Buffs.Frames[name]);
 		end);
 	else
@@ -21,8 +26,8 @@ end
 
 local function Buffs_Lock(locked)
 	if (locked) then
-		Array_ForEachKeyValue(frames, function(name, frame) 
-			frame:Lock(); 
+		Table_ForEach(frames, function(name, frame) 
+			frame:Lock();
 			XivMod_Config.Buffs.Frames[name] = frame:GetFrameOffset();
 		end);
 	else
@@ -36,7 +41,7 @@ end
 
 local function Buffs_OnConfigChanged()
 	Array_ForEach(enabledFrames, function (frameType)
-		frames[frameType] = XivBuffFrame_Create(frameType);
+		frames[frameType] = BuffFrame_Create(frameType);
 	end);
 
 	Buffs_Toggle(XivMod_Config.Buffs.Enabled);
