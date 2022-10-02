@@ -1,9 +1,9 @@
 -- Aura
-local AURA_ICON_OFFSET = -6;
+local AURA_ICON_OFFSET = -4;
 
 -- Aura Icon
+local AURA_ICON_SIZE = AURA_SIZE.x + 3;
 local AURA_ICON_SUBLAYER = -8;
-local AURA_ICON_CROP = { left = 1, right = 1, top = 1, bottom = 1 };
 local AURA_ICON_BUFF_MASK = [[Interface\AddOns\XIVMod\buffs\assets\BuffMask]];
 local AURA_ICON_DEBUFF_MASK = [[Interface\AddOns\XIVMod\buffs\assets\DebuffMask]];
 
@@ -32,7 +32,7 @@ local COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
 
 -- Stacks
 local STACKS_FONT = "NumberFontNormal";
-local STACKS_OFFSET = { x = -2.5, y = -5 };
+local STACKS_OFFSET = { x = -3, y = -5 };
 
 local function XivAura_OnUpdate(aura)
 	local targetText = nil;
@@ -109,13 +109,13 @@ end
 
 function XivAura_OnLoad(aura)
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
-	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET - AURA_ICON_CROP.top);
-	aura.texture:SetSize(AURA_SIZE.x, AURA_SIZE.x);
+	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET);
+	aura.texture:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE);
 	aura.texture:Show();
 
 	aura.textureFrame = aura:CreateTexture(nil, "ARTWORK", nil, AURA_FRAME_SUBLAYER);
 	aura.textureFrame:SetPoint("TOP", 0, AURA_ICON_OFFSET);
-	aura.textureFrame:SetSize(AURA_SIZE.x, AURA_SIZE.x);
+	aura.textureFrame:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE);
 	aura.textureFrame:Show();
 
 	aura.cleanse = aura:CreateTexture(nil, "ARTWORK", nil, AURA_CLEANSE_SUBLAYER);

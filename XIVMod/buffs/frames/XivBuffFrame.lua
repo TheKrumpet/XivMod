@@ -34,14 +34,14 @@ local function XivBuffFrameAuras_OnEvent(auraFrame)
     end
 
     table.sort(auras, function (left, right)
+        if (opts.attrs.seperateOwn) then
+            if (left.caster == "player" and right.caster ~= "player") then
+                return true;
+            end
+        end
+
         return left.expirationTime > right.expirationTime;
     end);
-
-    if (opts.attrs.seperateOwn) then
-        table.sort(auras, function (left, right) 
-            return left.caster == "player";
-        end);
-    end
 
     local childFrames = { auraFrame:GetChildren() };
     local allAurasRendered = false;
