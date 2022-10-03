@@ -11,10 +11,7 @@ local function SecureXivBuffFrameAuras_OnEvent(auraFrame)
 end
 
 local function SecureXivBuffFrame_Render(frame)
-	if (not InCombatLockdown()) then
-		SecureAuraHeader_Update(frame.auraFrame);
-		SecureXivBuffFrameAuras_OnEvent(frame.auraFrame);
-	end
+	SecureXivBuffFrameAuras_OnEvent(frame.auraFrame);
 end
 
 function SecureXivBuffFrame_SetOptions(frame, opts)
