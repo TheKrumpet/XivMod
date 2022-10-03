@@ -2,11 +2,14 @@ local function XivBuffFrame_CreateNewFrame(auraFrame, index, opts)
     childFrame = CreateFrame("Frame", nil, auraFrame, "XivAuraTemplate");
     local wrapAfter = opts.attrs.wrapAfter or 10;
 
-    local wrap = math.ceil(index / wrapAfter) - 1;
-    local wrap_index = (index % wrapAfter) - 1;
+    -- It's easier to do the math with a zero-based index.
+    local zeroed_index = index - 1;
 
-    local wrapXOffset = opts.attrs.wrapAfter or 0;
-    local wrapYOffset = opts.attrs.wrapAfter or AURA_OFFSETS.y;
+    local wrap = math.floor(zeroed_index / wrapAfter);
+    local wrap_index = zeroed_index % wrapAfter;
+
+    local wrapXOffset = opts.attrs.wrapXOffset or 0;
+    local wrapYOffset = opts.attrs.wrapYOffset or AURA_OFFSETS.y;
     local xOffset = opts.attrs.xOffset or AURA_OFFSETS.x;
     local yOffset = opts.attrs.yOffset or 0;
 

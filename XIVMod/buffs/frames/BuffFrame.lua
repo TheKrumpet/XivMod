@@ -57,8 +57,7 @@ AURA_FRAME_OPTS[BUFF_FRAME_TYPE.TargetDebuff] = {
 		wrapYOffset = -AURA_OFFSETS.y,
 		xOffset = -AURA_OFFSETS.x,
 		unit = "target",
-		filter = "HARMFUL",
-		template = "XivAuraTemplate"
+		filter = "HARMFUL"
 	}
 }
 
