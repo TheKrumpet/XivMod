@@ -8,13 +8,15 @@ local frames = {};
 
 local function Buffs_Toggle(enabled)
 	if (enabled) then
-		BuffFrame:Hide();
+		-- BuffFrame:Hide();
+		DebuffFrame:Hide();
 
 		Table_ForEach(frames, function (name, frame)
 			frame:Enable(XivMod_Config.Buffs.Frames[name]);
 		end);
 	else
-		BuffFrame:Show();
+		-- BuffFrame:Show();
+		DebuffFrame:Show();
 
 		Array_ForEach(frames, function (frame) 
 			frame:Hide(); 

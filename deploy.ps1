@@ -18,7 +18,7 @@ function Copy-Filtered {
 }
 
 $deployExts = @( "*.lua"; "*.xml"; "*.toc"; "*.blp" );
-$target = "E:\World of Warcraft\_classic_\Interface\AddOns\XIVMod";
+$target = "E:\World of Warcraft\_retail_\Interface\AddOns\XIVMod";
 
 if (Test-Path $target) {
     Remove-Item $target -Recurse -Force;

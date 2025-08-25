@@ -29,11 +29,22 @@ local function XivBuffFrameAuras_OnEvent(auraFrame)
     local opts = auraFrame.opts;
 
     for aura_index = 1,40 do
-        local name, _, _, _, _, expirationTime, caster = UnitAura(opts.attrs.unit, aura_index, opts.attrs.filter);
+        local addAura = true;
+        local name, _, _, _, duration, expirationTime, caster = UnitAura(opts.attrs.unit, aura_index, opts.attrs.filter);
 
         if (not name) then break end;
 
-        table.insert(auras, { id = aura_index, expirationTime = expirationTime, caster = caster });
+        if (opts.maxDuration and (expirationTime == 0 or duration >= opts.maxDuration)) then
+            addAura = false;
+        end
+
+        if (addAura and (opts.playerOnly and caster ~= "player")) then
+            addAura = false
+        end
+
+        if (addAura) then
+            table.insert(auras, { id = aura_index, expirationTime = expirationTime, caster = caster });
+        end
     end
 
     table.sort(auras, function (left, right)
@@ -42,8 +53,6 @@ local function XivBuffFrameAuras_OnEvent(auraFrame)
                 return true;
             end
         end
-
-        return left.expirationTime > right.expirationTime;
     end);
 
     local childFrames = { auraFrame:GetChildren() };

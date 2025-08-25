@@ -1,13 +1,11 @@
 local function SecureXivBuffFrameAuras_OnEvent(auraFrame)
 	if (not auraFrame:IsShown()) then return end;
 
-	for aura_index = 1,40 do
-		local aura = auraFrame:GetAttribute("child" .. aura_index);
-
-		if (not aura or not aura:IsShown()) then return end;
-
-		aura:OnAurasChanged();
-	end
+	Array_ForEach({ auraFrame:GetChildren() }, function (aura)
+		if (aura:IsShown()) then
+			aura:OnAurasChanged();
+		end
+	end);
 end
 
 local function SecureXivBuffFrame_Render(frame)

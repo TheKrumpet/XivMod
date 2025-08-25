@@ -1,10 +1,14 @@
+local UPDATE_HERTZ = 10;
+local UPDATE_TIME = 1 / UPDATE_HERTZ;
+
 local AURA_UPDATE_EVENTS = { "PLAYER_DEAD" };
 local AURA_FRAME_OPTS = {}
 
 AURA_FRAME_OPTS[BUFF_FRAME_TYPE.PlayerBuff] = {
 	name = "Player Buffs",
 	point = "BOTTOMLEFT",
-	secure = true,
+	secure = false,
+	maxDuration = 300,
 	attrs = {
 		wrapYOffset = AURA_OFFSETS.y,
 		xOffset = AURA_OFFSETS.x,
@@ -53,6 +57,7 @@ AURA_FRAME_OPTS[BUFF_FRAME_TYPE.TargetDebuff] = {
 	name = "Target Debuffs",
 	point = "TOPRIGHT",
 	secure = false,
+	playerOnly = true,
 	attrs = {
 		wrapYOffset = -AURA_OFFSETS.y,
 		xOffset = -AURA_OFFSETS.x,
@@ -90,6 +95,18 @@ local function BuffFrame_Unlock(frame)
 	frame.dragFrame:Show();
 end
 
+local function BuffAuraFrame_OnUpdate(auraFrame)
+	local time = GetTime();
+
+	if (time - auraFrame.lastUpdated < UPDATE_TIME) then return end;
+
+	Array_ForEach({ auraFrame:GetChildren() }, function (aura) 
+		if (aura:IsShown()) then
+			aura:Update(time);
+		end
+	end);
+end
+
 function BuffFrame_Create(frameType)
 	local opts = AURA_FRAME_OPTS[frameType];
 	local frame = nil;
@@ -122,6 +139,8 @@ function BuffFrame_Create(frameType)
 		XivBuffFrame_SetOptions(frame, opts);
 	end
 
+	auraFrame.lastUpdated = 0;
+	auraFrame:HookScript("OnUpdate", BuffAuraFrame_OnUpdate);
 	auraFrame:Show();
 	frame:Show();
 	frame:Render();

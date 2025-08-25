@@ -29,6 +29,7 @@
 					<Attribute name="separateOwn" value="1" />
 					<Attribute name="wrapAfter" value="10" />
 					<Attribute name="wrapXOffset" value="0" />
+					<Attribute name="includeWeapons" value="1" />
 				</Attributes>
 			</Frame>
 		</Frames>

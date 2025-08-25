@@ -34,11 +34,14 @@ local COUNTDOWN_COLOUR_OTHER = { r = 1.0, g = 1.0, b = 1.0 };
 local STACKS_FONT = "NumberFontNormal";
 local STACKS_OFFSET = { x = -3, y = -5 };
 
-local function XivAura_OnUpdate(aura)
+local UPDATE_HERTZ = 10;
+local UPDATE_TIME = 1 / UPDATE_HERTZ;
+
+local function XivAura_Update(aura, time)
 	local targetText = nil;
 	-- Don't update auras if they don't expire.
 	if (aura.expires) then
-		targetText = GetCountdownUntilExpires(aura.expires);
+		targetText = GetCountdownUntilExpires(aura.expires, time);
 	end
 
 	if (aura.countdown:GetText() ~= targetText) then
@@ -49,13 +52,7 @@ end
 local function XivAura_OnAuraChanged(aura, icon, dispelType, caster)
 	aura.texture:SetTexture(icon);
 
-	if (aura.filter == "HELPFUL") then
-		aura.texture:SetMask(AURA_ICON_BUFF_MASK);
-		aura.textureFrame:SetTexture(AURA_FRAME_BUFF_TEXTURE);
-	else
-		aura.texture:SetMask(AURA_ICON_DEBUFF_MASK);
-		aura.textureFrame:SetTexture(AURA_FRAME_DEBUFF_TEXTURE);
-
+	if (aura.filter == "HARMFUL") then
 		if (dispelType == nil or dispelType == "") then
 			aura.cleanse:Hide();
 		else
@@ -108,6 +105,9 @@ local function XivAura_HideTooltip()
 end
 
 function XivAura_OnLoad(aura)
+	aura.unit = aura:GetParent():GetAttribute("unit");
+	aura.filter = aura:GetParent():GetAttribute("filter");
+
 	aura.texture = aura:CreateTexture(nil, "ARTWORK", nil, AURA_ICON_SUBLAYER);
 	aura.texture:SetPoint("TOP", 0, AURA_ICON_OFFSET);
 	aura.texture:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE);
@@ -117,6 +117,14 @@ function XivAura_OnLoad(aura)
 	aura.textureFrame:SetPoint("TOP", 0, AURA_ICON_OFFSET);
 	aura.textureFrame:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE);
 	aura.textureFrame:Show();
+
+	if (aura.filter == "HELPFUL") then
+		aura.texture:SetMask(AURA_ICON_BUFF_MASK);
+		aura.textureFrame:SetTexture(AURA_FRAME_BUFF_TEXTURE);
+	else
+		aura.texture:SetMask(AURA_ICON_DEBUFF_MASK);
+		aura.textureFrame:SetTexture(AURA_FRAME_DEBUFF_TEXTURE);
+	end
 
 	aura.cleanse = aura:CreateTexture(nil, "ARTWORK", nil, AURA_CLEANSE_SUBLAYER);
 	aura.cleanse:SetTexture(AURA_CLEANSE_TEXTURE);
@@ -138,12 +146,9 @@ function XivAura_OnLoad(aura)
 		aura:RegisterForClicks("RightButtonUp");
 	end
 
-	aura.unit = aura:GetParent():GetAttribute("unit");
-	aura.filter = aura:GetParent():GetAttribute("filter");
-
-	aura:HookScript("OnUpdate", XivAura_OnUpdate);
 	aura:HookScript("OnEnter", XivAura_ShowTooltip);
 	aura:HookScript("OnLeave", XivAura_HideTooltip);
 
 	aura.OnAurasChanged = XivAura_OnAurasChanged;
+	aura.Update = XivAura_Update;
 end
